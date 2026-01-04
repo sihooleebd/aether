@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aether</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Icon set -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+
+    <!-- Single Theme Toggle (Fixed Bottom Right) -->
+    <button id="theme-toggle" class="theme-toggle">
+        <i data-lucide="moon"></i>
+    </button>
+
+    <main class="container">
+
+        <!-- Hero -->
+        <section class="section-header">
+            <h1>Aether</h1>
+            <p>An ethereal, versatile web palette featuring Ash Blue as the primary anchor.</p>
+
+            <div class="hero-actions">
+                <a href="https://github.com/sihooleebd/aether" target="_blank" class="btn btn-secondary">
+                    <i data-lucide="github"></i>
+                    GitHub Repo
+                </a>
+                <a href="https://raw.githubusercontent.com/sihooleebd/aether/master/theme.json" target="_blank"
+                    class="btn btn-primary">
+                    <i data-lucide="download"></i>
+                    Download Theme
+                </a>
+            </div>
+
+            <div class="scroll-indicator"
+                onclick="document.getElementById('palette-start').scrollIntoView({behavior: 'smooth'})">
+                <span>Enter the world of Aether.</span>
+                <i data-lucide="chevron-down"></i>
+            </div>
+        </section>
+
+        <!-- Dynamic Palette Grid -->
+        <section id="palette-start">
+            <div class="section-header">
+                <h2>Color Palette</h2>
+                <p>Click any swatch to copy its HEX code.</p>
+            </div>
+            <div id="palette-grid" class="palette-grid">
+                <!-- Injected via JS -->
+            </div>
+        </section>
+
+        <!-- Interactive Dashboard -->
+        <section>
+            <div class="section-header">
+                <h2>UI Components</h2>
+                <p>Real-world application in complex interfaces.</p>
+            </div>
+
+            <div class="dashboard-preview">
+                <div class="ui-grid">
+
+                    <!-- Buttons & Inputs -->
+                    <div class="ui-group">
+                        <h3>Elements</h3>
+                        <div class="component-demo">
+                            <div style="display: flex; gap: 8px;">
+                                <button class="btn btn-primary">Primary Action</button>
+                                <button class="btn btn-secondary">Secondary</button>
+                            </div>
+                            <button class="btn btn-accent" style="width: 100%">Special Offer (Accent)</button>
+
+                            <div class="input-group">
+                                <label>Email Address</label>
+                                <input type="email" placeholder="user@example.com">
+                            </div>
+
+                            <div class="input-group">
+                                <label>Department</label>
+                                <select>
+                                    <option>Design</option>
+                                    <option>Engineering</option>
+                                    <option>Marketing</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cards & Stats -->
+                    <div class="ui-group">
+                        <h3>Cards & States</h3>
+                        <div class="component-demo">
+
+                            <div class="card">
+                                <div class="card-title">
+                                    Total Revenue
+                                    <i data-lucide="trending-up" size="18" color="var(--success)"></i>
+                                </div>
+                                <div class="stat-value">$12,450</div>
+                                <div class="stat-trend">
+                                    <i data-lucide="arrow-up" size="14"></i>
+                                    12% vs last month
+                                </div>
+                            </div>
+
+                            <div class="alert">
+                                <i data-lucide="check-circle" size="18"></i>
+                                <span>Changes saved successfully.</span>
+                            </div>
+
+                            <div class="tag-cloud">
+                                <span class="tag">#DesignSystem</span>
+                                <span class="tag">#UI</span>
+                                <span class="tag">#CSS</span>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="container">
+        <div class="footer-content">
+            <p>Made by <a href="https://www.benjaminlee.kr/" target="_blank">Benjamin</a></p>
+            <p class="copyright">&copy; 2026 Aether Theme. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+
+</html>

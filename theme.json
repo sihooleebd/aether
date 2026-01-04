@@ -1,0 +1,63 @@
+{
+    "meta": {
+        "palette_name": "Aether",
+        "version": "1.0",
+        "description": "A versatile web palette featuring Ash Blue as the primary anchor, with comprehensive Light and Dark modes."
+    },
+    "brand": {
+        "primary": {
+            "base": "#6B8799",
+            "hover": "#587284",
+            "dark_mode_accessible": "#89A3B5",
+            "dark_mode_hover": "#A1B9C9"
+        },
+        "secondary": {
+            "base": "#374A5C",
+            "description": "Midnight Slate for heavy headers and footers"
+        },
+        "accent": {
+            "base": "#CFA098",
+            "description": "Muted Clay for CTAs and highlights"
+        }
+    },
+    "functional": {
+        "success": "#88B09D",
+        "warning": "#D6B57E",
+        "error": "#CC8B8B",
+        "info": "#85A8CC"
+    },
+    "modes": {
+        "light": {
+            "background": {
+                "app": "#F8FAFC",
+                "surface": "#FFFFFF",
+                "surface_elevated": "#F1F5F9"
+            },
+            "text": {
+                "heading": "#1E293B",
+                "body": "#475569",
+                "muted": "#94A3B8"
+            },
+            "border": {
+                "subtle": "#E2E8F0",
+                "focus": "#CBD5E1"
+            }
+        },
+        "dark": {
+            "background": {
+                "app": "#0F172A",
+                "surface": "#1E293B",
+                "surface_elevated": "#334155"
+            },
+            "text": {
+                "heading": "#F1F5F9",
+                "body": "#CBD5E1",
+                "muted": "#64748B"
+            },
+            "border": {
+                "subtle": "#334155",
+                "focus": "#475569"
+            }
+        }
+    }
+}
