@@ -46,6 +46,9 @@
   --radius-lg: 24px;
   --radius-md: 16px;
   --radius-sm: 8px;
+
+  /* Animation */
+  --theme-transition: 0.5s ease;
 }
 
 body.dark-mode {
@@ -83,7 +86,8 @@ body {
   background-attachment: fixed;
   color: var(--text-body);
   line-height: 1.7;
-  transition: color 0.5s ease, background-color 0.5s ease;
+  line-height: 1.7;
+  transition: color var(--theme-transition), background-color var(--theme-transition), background-image var(--theme-transition);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -250,6 +254,7 @@ main>section:first-child {
   border: 1px solid var(--border-subtle);
   border-top: 1px solid var(--glass-border);
   box-shadow: 0 20px 40px -10px var(--glass-shadow);
+  transition: background-color var(--theme-transition), border-color var(--theme-transition), box-shadow var(--theme-transition);
 }
 
 /* Palette Grid (Thinking "Falling Leaves") */
@@ -273,7 +278,7 @@ main>section:first-child {
   width: 300px;
   border-radius: var(--radius-md);
   overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color var(--theme-transition), border-color var(--theme-transition);
   cursor: pointer;
   position: relative;
   background: var(--glass-surface);
@@ -284,7 +289,6 @@ main>section:first-child {
   --rotate: 0deg;
   --tx: 0px;
   transform: translateX(var(--tx)) rotate(var(--rotate));
-  will-change: transform;
 }
 
 .swatch-card:hover {
@@ -295,7 +299,7 @@ main>section:first-child {
 }
 
 .swatch-card:active {
-  transform: scale(1.05) !important;
+  transform: translateX(var(--tx)) rotate(var(--rotate)) scale(1.05) !important;
 }
 
 .swatch-color {
@@ -320,6 +324,7 @@ main>section:first-child {
   font-size: 0.8rem;
   margin-top: 6px;
   opacity: 0.8;
+  font-variant-numeric: lining-nums;
 }
 
 /* Dashboard Preview */
@@ -517,6 +522,7 @@ select:focus {
   border: 1px solid var(--border-subtle);
   position: relative;
   overflow: hidden;
+  transition: background-color var(--theme-transition), border-color var(--theme-transition), box-shadow var(--theme-transition);
 }
 
 .card-title {
@@ -598,6 +604,7 @@ footer {
   text-align: center;
   color: var(--text-muted);
   font-size: 0.9rem;
+  transition: border-color var(--theme-transition);
 }
 
 .footer-content {
@@ -749,7 +756,7 @@ footer a:hover {
   align-items: center;
   justify-content: center;
   color: var(--text-body);
-  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, background-color var(--theme-transition), color var(--theme-transition);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 

@@ -24,57 +24,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Load Palette then setup scroll
-    loadThemeData().then(() => {
-        setupScrollAnimation();
-    });
+    loadThemeData();
 });
 
 // Scroll Animation Data
-let cardsData = [];
-let ticking = false;
 
-function setupScrollAnimation() {
-    const cards = document.querySelectorAll('.swatch-card');
-
-    cards.forEach(card => {
-        const baseX = parseFloat(card.style.getPropertyValue('--tx')) || 0;
-        cardsData.push({
-            el: card,
-            baseX,
-            phase: Math.random() * Math.PI * 2,
-            speed: 0.002 + Math.random() * 0.001, // Smoother speed
-            amplitude: 35 + Math.random() * 25    // More noticeable sway
-        });
-    });
-
-    // Passive listener for better scroll performance
-    window.addEventListener('scroll', onScroll, { passive: true });
-    updateCardPositions();
-}
-
-function onScroll() {
-    if (!ticking) {
-        requestAnimationFrame(() => {
-            updateCardPositions();
-            ticking = false;
-        });
-        ticking = true;
-    }
-}
-
-function updateCardPositions() {
-    const scrollY = window.scrollY;
-
-    // Batch read/write to avoid layout thrashing
-    const updates = cardsData.map(item => {
-        const sway = Math.sin(scrollY * item.speed + item.phase) * item.amplitude;
-        return { el: item.el, newX: item.baseX + sway };
-    });
-
-    updates.forEach(({ el, newX }) => {
-        el.style.setProperty('--tx', `${newX}px`);
-    });
-}
 
 // Toast System
 function showToast(message, type = 'success') {
@@ -123,26 +77,29 @@ function renderPalette(data) {
 
     const fragment = document.createDocumentFragment();
     const groups = ['brand', 'functional'];
+    const counter = {
+        value: 0
+    };
 
     groups.forEach(group => {
-        if (data[group]) traverseAndRender(data[group], group, fragment);
+        if (data[group]) traverseAndRender(data[group], group, fragment, counter);
     });
 
     grid.appendChild(fragment);
 }
 
-function traverseAndRender(obj, prefix, container) {
+function traverseAndRender(obj, prefix, container, counter) {
     for (const key in obj) {
         const value = obj[key];
         if (typeof value === 'object' && value !== null) {
-            traverseAndRender(value, `${prefix}.${key}`, container);
+            traverseAndRender(value, `${prefix}.${key}`, container, counter);
         } else if (typeof value === 'string' && value.startsWith('#')) {
-            createSwatch(container, value, `${prefix}.${key}`);
+            createSwatch(container, value, `${prefix}.${key}`, counter);
         }
     }
 }
 
-function createSwatch(container, color, name) {
+function createSwatch(container, color, name, counter) {
     const displayName = name.split('.')
         .slice(1)
         .map(segment => segment.split('_').map(word =>
@@ -153,15 +110,24 @@ function createSwatch(container, color, name) {
     const card = document.createElement('div');
     card.className = 'swatch-card';
 
+    // Static "S" Shape (Sine Wave)
+    const index = counter.value++;
     const isMobile = window.innerWidth < 768;
-    const xRange = isMobile ? 50 : 150;
+    const amplitude = isMobile ? 30 : 120; // Horizontal offset
+    const frequency = 0.6; // How tight the waves are
+
+    const x = amplitude * Math.sin(index * frequency);
+
+    // Random Tilt for "Falling Leaves" effect
+    // Range: -20deg to 20deg
     const randomRotate = (Math.random() * 40) - 20;
-    const randomX = (Math.random() * (xRange * 2)) - xRange;
-    const randomGap = Math.floor(Math.random() * 80) + 60;
+
+    // Consistent spacing for clean list
+    const gap = isMobile ? 50 : 80;
 
     card.style.setProperty('--rotate', `${randomRotate}deg`);
-    card.style.setProperty('--tx', `${randomX}px`);
-    card.style.marginBottom = `${randomGap}px`;
+    card.style.setProperty('--tx', `${x}px`);
+    card.style.marginBottom = `${gap}px`;
 
     card.innerHTML = `
         <div class="swatch-color" style="background-color: ${color}"></div>
